@@ -5,11 +5,11 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h4 class="m-0">Member</h4>
+            <h4 class="m-0">User</h4>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item active">Member</li>
+              <li class="breadcrumb-item active">User</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -25,7 +25,7 @@
             <div class="card">
               <div class="card-body">
                 <div class="mb-2">
-                  <button id="btnTambah" class="btn btn-sm btn-success rounded">&plus; Tambah Member</button>
+                  <button id="btnTambah" class="btn btn-sm btn-success rounded">&plus; Tambah User</button>
                 </div>
 
                 <table class="table table-hover">
@@ -33,13 +33,13 @@
                     <tr>
                       <th scope="col">#</th>
                       <th scope="col">Nama</th>
-                      <th scope="col">Alamat</th>
-                      <th scope="col">Jenis Kelamin</th>
-                      <th scope="col">Telepon</th>
+                      <th scope="col">Username</th>
+                      <th scope="col">Outlet</th>
+                      <th scope="col">Role</th>
                       <th scope="col">Aksi</th>
                     </tr>
                   </thead>
-                  <tbody id="tbodyMember">
+                  <tbody id="tbodyUser">
 
                   </tbody>
                 </table>
@@ -58,7 +58,7 @@
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="modal-header">
-          <h5>Tambah Member</h5>
+          <h5>Tambah User</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -73,28 +73,24 @@
                 </div>
 
                 <div class="form-group">
-                  <label for="inputTambahTelp">Telepon</label>
-                  <input class="form-control" type="tel" id="inputTambahTelp" required>
-                </div> 
-                 
+                  <label for="inputTambahUsername">Username</label>
+                  <input class="form-control" type="text" id="inputTambahUsername" required>
+                </div>
               </div>
               <div class="col-6">
                 <div class="form-group">
-                  <label for="inputTambahJenisKelamin">Jenis Kelamin</label><br>
-                  <div class="icheck-success icheck-inline">
-                      <input type="radio" id="radioTambahLakiLaki" name="groupTambahJenisKelamin" value="L" required/>
-                      <label for="radioTambahLakiLaki">Laki Laki</label>
-                  </div>
-                  <div class="icheck-success icheck-inline">
-                      <input type="radio" id="radioTambahPerempuan" name="groupTambahJenisKelamin" value="P"/>
-                      <label for="radioTambahPerempuan">Perempuan</label>
-                  </div>
-                </div>         
-                
+                  <label for="selectTambahOutlet">Outlet</label>
+                  <select class="form-control" id="selectTambahOutlet"></select>
+                </div>
+
                 <div class="form-group">
-                  <label for="inputTambahAlamat">Alamat</label>
-                  <textarea class="form-control" id="inputTambahAlamat" rows="3" required></textarea>
-                </div> 
+                  <label for="selectTambahRole">Role</label>
+                  <select class="form-control" id="selectTambahRole">
+                    <option value="Admin">Admin</option>
+                    <option value="Kasir">Kasir</option>
+                    <option value="Owner">Owner</option>
+                  </select>
+                </div>
 
               </div>
             </div>
@@ -111,7 +107,7 @@
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="modal-header">
-          <h5>Edit Member</h5>
+          <h5>Edit User</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -127,28 +123,24 @@
                 </div>
 
                 <div class="form-group">
-                  <label for="inputEditTelp">Telepon</label>
-                  <input class="form-control" type="tel" id="inputEditTelp" required>
-                </div> 
-                 
+                  <label for="inputEditUsername">Username</label>
+                  <input class="form-control" type="text" id="inputEditUsername" required>
+                </div>
               </div>
               <div class="col-6">
                 <div class="form-group">
-                  <label for="inputEditJenisKelamin">Jenis Kelamin</label><br>
-                  <div class="icheck-success icheck-inline">
-                      <input type="radio" id="radioEditLakiLaki" name="groupEditJenisKelamin" value="L" required/>
-                      <label for="radioEditLakiLaki">Laki Laki</label>
-                  </div>
-                  <div class="icheck-success icheck-inline">
-                      <input type="radio" id="radioEditPerempuan" name="groupEditJenisKelamin" value="P"/>
-                      <label for="radioEditPerempuan">Perempuan</label>
-                  </div>
-                </div>         
-                
+                  <label for="selectEditOutlet">Outlet</label>
+                  <select class="form-control" id="selectEditOutlet"></select>
+                </div>
+
                 <div class="form-group">
-                  <label for="inputEditAlamat">Alamat</label>
-                  <textarea class="form-control" id="inputEditAlamat" rows="3" required></textarea>
-                </div> 
+                  <label for="selectEditRole">Role</label>
+                  <select class="form-control" id="selectEditRole">
+                    <option value="Admin">Admin</option>
+                    <option value="Kasir">Kasir</option>
+                    <option value="Owner">Owner</option>
+                  </select>
+                </div>
 
               </div>
             </div>
@@ -173,59 +165,57 @@
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 <script>
   $(document).ready(function(){
-    refreshMember();
+    refreshUser();
 
-    function refreshMember(){
+    function refreshUser(){
       $.ajax({
         type: 'GET',
-        url: '<?php echo base_url() ?>member/getmember',
+        url: '<?php echo base_url() ?>user/getuser',
         dataType: 'json',
         success: function(data) {
           var html = "";
           for (let a = 0; a < data.length; a++) {
-              let attrs = " data-id='"+ data[a].id_member  +"' data-nama='"+ data[a].nama_member +"' data-alamat='"+ data[a].alamat +"' data-jenis-kelamin='"+ data[a].jenis_kelamin +"' data-telp='"+data[a].telp+"' ";
-              (data[a].jenis_kelamin == "L") ? jenis_kelamin = `Laki-Laki`: jenis_kelamin = `Perempuan`
+              let attrs = " data-id='"+ data[a].id_user  +"' data-nama='"+ data[a].nama +"' data-username='"+ data[a].username +"' data-id-outlet='"+ data[a].id_outlet +"' data-role='"+data[a].role+"' ";
               html += `<tr>
                 <th scope="row">`+(a+1)+`</th>
-                <td>`+data[a].nama_member+`</td>
-                <td>`+data[a].alamat+`</td>
-                <td>`+jenis_kelamin+`</td>
-                <td>`+data[a].telp+`</td>
-                <td><button id="btnEdit" `+ attrs +` class="btn btn-primary btn-xs"><i class="nav-icon fas fa-edit"></i></button> <button id="btnHapusMember" class="btn btn-danger btn-xs" data-id="`+data[a].id_member+`"><i class="nav-icon fas fa-trash"></i></button></td>
+                <td>`+data[a].nama+`</td>
+                <td>`+data[a].username+`</td>
+                <td>`+data[a].nama_outlet+`</td>
+                <td>`+data[a].role+`</td>
+                <td><button id="btnEdit" `+ attrs +` class="btn btn-primary btn-xs"><i class="nav-icon fas fa-edit"></i></button> <button id="btnHapusUser" class="btn btn-danger btn-xs" data-id="`+data[a].id_user+`"><i class="nav-icon fas fa-trash"></i></button></td>
               </tr>`
           }
-          $('#tbodyMember').html(html);
+          $('#tbodyUser').html(html);
         }
       })
     }
 
     $("#btnTambah").on("click", function(){
+      setSelectOutlet()
       $("#inputTambahNama").val("")
-      $("#inputTambahTelp").val("")
-      $("#inputTambahAlamat").val("")
-      $("input[name='groupTambahJenisKelamin']").removeAttr('checked');
+      $("#inputTambahUsername").val("")
       $("#modalTambah").modal("show")
     })
 
     $("#btnSimpanTambah").on("click", function(){
       let nama = $("#inputTambahNama").val()
-      let telp = $("#inputTambahTelp").val()
-      let alamat = $("#inputTambahAlamat").val()
-      let jenis_kelamin = $('input[name="groupTambahJenisKelamin"]:checked').val();
+      let username = $("#inputTambahUsername").val()
+      let id_outlet = $("#selectTambahOutlet").val()
+      let role = $("#selectTambahRole").val()
       
-      if (nama != "" && telp != "" && alamat != "" && jenis_kelamin != ""){
+      if (nama != "" && username != "" && id_outlet != "" && role != ""){
         $.ajax({
           type: 'POST',
-          url: '<?php echo base_url() ?>member/createmember',
+          url: '<?php echo base_url() ?>user/createuser',
           dataType: 'json',
           data: {
             nama,
-            alamat,
-            jenis_kelamin,
-            telp,
+            username,
+            id_outlet,
+            role,
           },
           success: function(data) {
-            refreshMember()
+            refreshUser()
             SuccessSwal()
             $("#modalTambah").modal("hide")
           }
@@ -236,45 +226,43 @@
     })
 
     $(document).on("click", "#btnEdit", function(){
+      setSelectOutlet()
+
       let id = $(this).data("id")
       let nama = $(this).data("nama")
-      let telp = $(this).data("telp")
-      let alamat = $(this).data("alamat")
-      let jenis_kelamin = $(this).data("jenis-kelamin")
+      let username = $(this).data("username")
+      let id_outlet = $(this).data("id-outlet")
+      let role = $(this).data("role")
 
       $('#inputEditId').val(id)
       $("#inputEditNama").val(nama)
-      $("#inputEditTelp").val(telp)
-      $("#inputEditAlamat").val(alamat)
-      if (jenis_kelamin == "L") {
-        $("#radioEditLakiLaki").prop("checked", true) 
-      } else{
-        $("#radioEditPerempuan").prop("checked", true)
-      } 
+      $("#inputEditUsername").val(username)
+      $('#selectEditOutlet').val(id_outlet)
+      $('#selectEditRole').val(role)
       $("#modalEdit").modal("show")
     })
 
     $(document).on("click", "#btnSimpanEdit", function(){
       let id = $("#inputEditId").val()
       let nama = $("#inputEditNama").val()
-      let telp = $("#inputEditTelp").val()
-      let alamat = $("#inputEditAlamat").val()
-      let jenis_kelamin = $('input[name="groupEditJenisKelamin"]:checked').val()
-
-      if (id != "" &&nama != "" && telp != "" && alamat != "" && jenis_kelamin != ""){
+      let username = $("#inputEditUsername").val()
+      let id_outlet = $("#selectEditOutlet").val()
+      let role = $("#selectEditRole").val()
+      
+      if (nama != "" && username != "" && id_outlet != "" && role != ""){
         $.ajax({
           type: 'POST',
-          url: '<?php echo base_url() ?>member/updatemember',
+          url: '<?php echo base_url() ?>user/updateuser',
           dataType: 'json',
           data: {
             id,
             nama,
-            alamat,
-            jenis_kelamin,
-            telp,
+            username,
+            id_outlet,
+            role,
           },
           success: function(data) {
-            refreshMember()
+            refreshUser()
             SuccessSwal()
             $("#modalEdit").modal("hide")
           }
@@ -284,7 +272,7 @@
       }
     })
 
-    $(document).on("click", "#btnHapusMember", function(){
+    $(document).on("click", "#btnHapusUser", function(){
       let id = $(this).data("id")
 
       Swal.fire({
@@ -300,19 +288,43 @@
         if (result.isConfirmed) {
           $.ajax({
             type: 'POST',
-            url: '<?php echo base_url() ?>member/deletemember',
+            url: '<?php echo base_url() ?>user/deleteuser',
             dataType: 'json',
             data: {
               id
             },
             success: function(data) {
-              refreshMember()
+              refreshUser()
               SuccessDeleteSwal()
             }
           })
         }
       })
     })
+
+    function setSelectOutlet(){
+      $.ajax({
+        type: 'GET',
+        url: '<?php echo base_url() ?>outlet/getoutlet',
+        dataType: 'json',
+        success: function(data) {
+          $("#selectTambahOutlet")
+            .find('option')
+            .remove()
+            .end()
+
+          $("#selectEditOutlet")
+            .find('option')
+            .remove()
+            .end()
+
+          for (i = 0; i < data.length; i++) {
+            $('#selectTambahOutlet').append("<option value='" + data[i].id_outlet + "' >" + data[i].nama_outlet + "</option");
+            $('#selectEditOutlet').append("<option value='" + data[i].id_outlet + "' >" + data[i].nama_outlet + "</option");
+          }
+        }
+      })
+    }
 
     const Toast = Swal.mixin({
       toast: true,

@@ -24,7 +24,10 @@
             <div class="card">
               <div class="card-body">
                 <div class="mb-3">
-                  <button id="btnTambah" class="btn btn-sm btn-success rounded">&plus; Tambah Transaksi</button>
+                <?php if($this->session->userdata("role") != "Owner") : ?>
+                  <button id="btnTambah" class="btn btn-sm btn-success rounded mr-1">&plus; Tambah Transaksi</button>
+                <?php endif; ?>
+                  <button onclick="location.href='<?php echo base_url('transaksi/generatelaporan') ?>'" class="btn btn-sm btn-danger rounded"><i class="fas fa-file-pdf mr-2"></i> Generate Laporan</button>
                 </div>
                 <div style="overflow-x:auto;">
                   <table class="table table-hover table-nowrap w-100">
@@ -412,7 +415,6 @@
         <td></td>
       </tr>
       `
-
       $('#tbodyAddDetail').html(html);    
     }
 

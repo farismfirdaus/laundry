@@ -57,6 +57,7 @@ class Transaksi extends CI_Controller{
       "tgl_bayar"       => $lunas,
       "biaya_tambahan"  => $this->input->post("biaya_tambahan"),
       "pajak"           => $this->input->post("pajak"),
+      "total"           => $this->input->post("total"),
       "status"          => "baru",
       "id_user"         => $this->session->userdata("id_user"),  
     );
@@ -111,5 +112,21 @@ class Transaksi extends CI_Controller{
 
     $result = $this->transaksi->UpdateTransaksi($id, $data);
     echo json_encode($result);
+  }
+
+  function GenerateLaporan() {
+    $data["transaksi"] = $this->transaksi->getTransaksi();
+
+    $this->load->library('pdf');
+
+    $this->pdf->setPaper('A4', 'landscape');
+    $this->pdf->filename = "laporan.pdf";
+    $this->pdf->load_view('v_pdf', $data);
+  }
+
+  function laporan() {
+    $data["transaksi"] = $this->transaksi->getTransaksi();
+
+    $this->load->view('v_pdf', $data);
   }
 }

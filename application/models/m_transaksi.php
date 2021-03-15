@@ -7,7 +7,7 @@ class M_transaksi extends CI_Model{
     $this->db->join('tb_member m','m.id_member=t.id_member');
     $this->db->join('tb_outlet o','o.id_outlet=t.id_outlet');
     $this->db->join('tb_user u','u.id_user=t.id_user');
-    $this->db->select("t.id_transaksi, o.nama_outlet, t.kode_invoice, m.nama_member, t.tgl, t.batas_waktu, t.tgl_bayar, t.status, t.biaya_tambahan, diskon, pajak, u.nama");
+    $this->db->select("t.id_transaksi, o.nama_outlet, t.kode_invoice, m.nama_member, t.tgl, t.batas_waktu, t.tgl_bayar, t.status, t.biaya_tambahan, diskon, pajak, total, u.nama");
     $this->db->order_by('id_transaksi', 'ASC');
     return $this->db->get("tb_transaksi t")->result_array();
   }

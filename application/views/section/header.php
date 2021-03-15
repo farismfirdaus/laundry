@@ -86,6 +86,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
               </p>
             </a>
           </li>
+          <?php if($this->session->userdata("role") != "Owner") : ?>
           <li class="nav-item">
             <a href="<?php echo ($link == "M") ? "#" : base_url("member") ; ?>" class="nav-link <?php echo ($link == "M") ? "active" : "" ; ?>">
               <i class="nav-icon fas fa-users"></i>
@@ -94,6 +95,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
               </p>
             </a>
           </li>
+          <?php endif; if($this->session->userdata("role") == "Admin") : ?>
           <li class="nav-item">
             <a href="<?php echo ($link == "P") ? "#" : base_url("paket") ; ?>" class="nav-link <?php echo ($link == "P") ? "active" : "" ; ?>">
               <i class="nav-icon fas fa-cubes"></i>
@@ -110,6 +112,15 @@ scratch. This page gets rid of all links and provides the needed markup only.
               </p>
             </a>
           </li>
+          <li class="nav-item">
+            <a href="<?php echo ($link == "U") ? "#" : base_url("user") ; ?>" class="nav-link <?php echo ($link == "U") ? "active" : "" ; ?>">
+              <i class="nav-icon fas fa-users"></i>
+              <p>
+                User
+              </p>
+            </a>
+          </li>
+          <?php endif; ?>
           <li class="nav-item">
             <a href="<?php echo ($link == "T") ? "#" : base_url("transaksi") ; ?>" class="nav-link <?php echo ($link == "T") ? "active" : "" ; ?>">              <i class="nav-icon fas fa-tag"></i>
               <p>
